@@ -12,6 +12,10 @@ permissions:
 
 jobs:
   deploy:
+    environment:
+      name: github-pages   # ✅ ADD THIS
+      url: ${{ steps.deployment.outputs.page_url }}  # ✅ ADD THIS
+
     runs-on: ubuntu-latest
 
     steps:
@@ -27,4 +31,5 @@ jobs:
           path: .
 
       - name: Deploy to GitHub Pages
+        id: deployment   # ✅ IMPORTANT
         uses: actions/deploy-pages@v4
